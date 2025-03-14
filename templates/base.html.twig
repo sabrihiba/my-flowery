@@ -1,17 +1,272 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flowery{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    {% block stylesheets %}
+    <style>
+    
+    /* The search bar container */
+    #searchBarContainer {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        transition: top 0.3s ease;
+        padding: 20px;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 50px;  /* Space for the close icon */
+    }
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    /* When the search bar is active, it slides down */
+    #searchBarContainer.active {
+        top: 0;
+    }
+
+    /* Search input style */
+    #searchBar {
+        width: 85%;  /* Adjust width to make space for the search button */
+        padding: 10px;
+    }
+
+    /* Search icon inside the bar */
+    #searchButton {
+        font-size: 20px;
+        cursor: pointer;
+        background-color: transparent; /* Remove background */
+        border: none; /* Remove border */
+        color:rgb(224, 163, 204); /* Optional, for color */
+    }
+
+    /* Close button outside the bar */
+    #closeSearch {
+        font-size: 30px;
+        cursor: pointer;
+        position: absolute;
+        right: 20px; /* Position it outside the bar */
+        top: 20px;
+    }
+
+    /* Button (search) and input field alignment inside the bar */
+    #searchBarContainer button {
+        margin-left: 10px;
+    }
+    /* Remove the blue outline on focus */
+/* Pink border when the search bar is focused */
+#searchBar:focus {
+    outline: none;
+    box-shadow: none;
+    border-color:rgb(224, 163, 204) ;  /* Pink border on focus */
+}
+
+
+/* Filter bar container */
+#filterBarContainer {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    transition: top 0.3s ease;
+    padding: 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 50px; /* Space for the close icon */
+}
+
+/* When the filter bar is active, it slides down */
+#filterBarContainer.active {
+    top: 0;
+}
+
+/* Filter input style */
+#filterBar {
+    width: 85%;
+    padding: 10px;
+    border: 2px solid #ccc; /* Default border */
+}
+
+/* Pink border when the filter bar is focused */
+#filterBar:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: pink; /* Pink border on focus */
+}
+
+/* Filter by Color button inside the bar */
+/* Style for Filter Icon Button */
+#filterButton {
+    font-size: 25px;
+    cursor: pointer;
+    background-color: transparent; /* Remove background */
+    border: none; /* Remove border */
+    color: rgb(219, 141, 180); /* Optional, for palette color */
+    padding: 0; /* Remove padding */
+}
+
+
+    /* Close button outside the bar */
+    #closeFilter {
+        font-size: 10px;
+        cursor: pointer;
+        position: absolute;
+        right: 10px; /* Position it outside the bar */
+        top: 20px;
+    }
+
+    /* Footer styles */
+    footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    footer .social-icons a {
+        margin: 0 10px;
+        color: #333;
+        text-decoration: none;
+    }
+
+    footer .social-icons a:hover {
+        color: #e43f7f; /* Pink hover color */
+    }
+
+    footer .links a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    footer .links a:hover {
+        color: #e43f7f; /* Pink hover color */
+    }
+    </style>
+    {% endblock %}
+</head>
+<body>
+    <header class="bg-light border-bottom">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between py-3">
+                <!-- Profile Section -->
+                <div>
+                    <a href="/profile" class="text-decoration-none text-dark">
+                        <i class="bi bi-person-circle fs-4"></i>
+                    </a>
+                </div>
+
+                <!-- Logo Section -->
+                <div class="text-center">
+                    <img src="{{ asset('images/logoo.jpg') }}" alt="Flower Logo" style="width: 40px; height: 40px;">
+                    <h1 class="d-inline fs-4 ms-2">Welcome to our Flowery</h1>
+                </div>
+
+                <!-- Search and Cart Section -->
+                <div class="d-flex align-items-center">
+                    <!-- Search Icon -->
+                    <i class="bi bi-search fs-4 me-3" id="searchIcon" style="cursor: pointer;"></i>
+
+                    <!-- Cart -->
+                    <a href="/cart" class="text-decoration-none text-dark">
+                        <i class="bi bi-cart fs-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="mt-3">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item"><a href="/home" class="nav-link text-dark">Home</a></li>
+                    <li class="nav-item"><a href="/shop" class="nav-link text-dark">Shop</a></li>
+                    <li class="nav-item"><a href="/contact" class="nav-link text-dark">Contact Us</a></li>
+                    <li class="nav-item"><a href="/about" class="nav-link text-dark">About Us</a></li>
+                    
+                    <!-- Filter by Color Icon -->
+                    <li class="nav-item">
+                        <i class="bi bi-palette fs-4 ms-2" id="colorFilterIcon" style="cursor: pointer;"></i>
+                        <div id="filterBarContainer">
+                            <input type="text" id="filterBar" class="form-control" placeholder="Enter the color you want">
+                            <button type="button" class="btn btn-primary ms-2" id="filterButton">
+                                <i class="bi bi-palette"></i>
+                            </button>
+                            <i class="bi bi-x-circle fs-3" id="closeFilter"></i>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Bar Container -->
+    <div id="searchBarContainer">
+        <input type="text" id="searchBar" class="form-control" placeholder="What are you looking for?">
+        <button type="submit" class="btn btn-primary" id="searchButton">
+            <i class="bi bi-search"></i>
+        </button>
+        <i class="bi bi-x-circle fs-3" id="closeSearch"></i>
+    </div>
+
+    {% block body %}{% endblock %}
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-icons mb-3">
+                <a href="#" class="bi bi-facebook fs-3"></a>
+                <a href="#" class="bi bi-twitter fs-3"></a>
+                <a href="#" class="bi bi-instagram fs-3"></a>
+                <a href="#" class="bi bi-linkedin fs-3"></a>
+            </div>
+            <div class="links">
+                <a href="#" class="me-3">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p class="mt-3">&copy; 2025 Flowery. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    {% block javascripts %}
+    <script>
+        // Toggle search bar visibility
+        document.getElementById('searchIcon').addEventListener('click', function() {
+            document.getElementById('searchBarContainer').classList.add('active');
+        });
+
+        // Close the search bar
+        document.getElementById('closeSearch').addEventListener('click', function() {
+            document.getElementById('searchBarContainer').classList.remove('active');
+        });
+    </script>
+    <script>
+    // Toggle filter bar visibility
+    document.getElementById('colorFilterIcon').addEventListener('click', function () {
+        document.getElementById('filterBarContainer').classList.add('active');
+    });
+
+    // Close the filter bar
+    document.getElementById('closeFilter').addEventListener('click', function () {
+        document.getElementById('filterBarContainer').classList.remove('active');
+    });
+
+    // Example action for the Filter by Color button
+    document.getElementById('filterButton').addEventListener('click', function () {
+        const color = document.getElementById('filterBar').value;
+        if (color) {
+            alert(`Filtering items by color: ${color}`);
+            // Add your filter logic here
+        } else {
+            alert('Please enter a color to filter!');
+        }
+    });
+    </script>
+    {% endblock %}
+</body>
 </html>

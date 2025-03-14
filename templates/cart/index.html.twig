@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block body %}
+<h1>Your Shopping Cart</h1>
+
+{% if cart is empty %}
+    <p>Your cart is empty.</p>
+{% else %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Extras</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>
+                        Extra Flowers: {{ item.extraFlowers }}<br>
+                        Letter: {{ item.letterText ? 'Yes' : 'No' }}<br>
+                        Chocolates: {{ item.chocolatesQuantity }}
+                    </td>
+                    <td>${{ item.price }}</td>
+                    <td>${{ item.totalPrice }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+{% endblock %}

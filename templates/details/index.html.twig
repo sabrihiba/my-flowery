@@ -1,0 +1,179 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.nameP }} - Product Details{% endblock %}
+
+{% block body %}
+<style>
+    .shop-container { 
+        text-align: left; 
+        padding: 20px;  
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    .product-card { 
+        border: 1px solid #ddd; 
+        padding: 15px; 
+        margin: 10px; 
+        display: inline-block; 
+        width: 100%; 
+        text-align: center;
+    }
+    .product-card img { 
+        width: 100%; 
+        height: auto; 
+        border-radius: 5px; 
+    }
+    .product-card h3 { 
+        margin: 10px 0; 
+    }
+    .product-card p { 
+        font-size: 14px; 
+    }
+    .btn-pink {
+        background-color: rgba(244, 216, 228, 0.98); /* Pink color */
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .btn-pink:hover {
+        background-color:rgb(236, 61, 154); /* Darker pink on hover */
+    }
+
+    /* Custom spacing */
+    .option-group {
+        margin-bottom: 25px; /* Adds space between each option */
+    }
+
+    /* Custom radio button styling */
+    input[type="radio"] {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(24, 22, 23, 0.98); /* Pink border */
+        border-radius: 50%;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+    }
+
+    /* Pink dot when selected */
+    input[type="radio"]:checked::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background-color: rgba(244, 216, 228, 0.98); /* Pink dot */
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .options-container {
+    margin-top: 60px; /* Adjust this value as needed */
+}
+
+</style>
+
+<div class="shop-container my-5">
+    <h1 class="text-center mb-4">Our Bouquet of {{ product.nameP }}</h1>
+    <div class="row">
+        <!-- Product Details -->
+        <div class="col-md-6">
+            <div class="product-card">
+                <a href="{{ path('details', {'id': product.id}) }}">
+                    <img src="{{ asset(product.imageP) }}" alt="{{ product.nameP }}">
+                </a>
+                <h3>{{ product.nameP }}</h3>
+                <p><strong>Category:</strong> {{ product.categoryP }}</p>
+                <p><strong>Price:</strong> ${{ product.priceP }}</p>
+                <p>{{ product.descriptionP }}</p>
+            </div>
+        </div>
+
+        <!-- Product Options -->
+        <div class="col-md-6">
+            <form method="POST" action="{{ path('add_to_cart', {'id': product.id}) }}">
+        <div class="options-container">
+                <!-- Quantity -->
+                <div class="option-group">
+                    <label for="quantity">Quantity of Bouquets:</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" required class="form-control w-50">
+                </div>
+
+                <!-- Extra Flowers -->
+                <div class="option-group">
+                    <label for="extraFlowers">Add Extra Flowers ($5 each):</label>
+                    <input type="number" id="extraFlowers" name="extraFlowers" value="0" min="0" class="form-control w-50">
+                </div>
+
+                <!-- Add a Letter -->
+                <div class="option-group">
+                    <label>Add a Letter (+$10):</label>
+                    <div>
+                        <input type="radio" id="letterYes" name="letterOption" value="yes" onclick="toggleLetterField(true)">
+                        <label for="letterYes">Yes</label>
+
+                        <input type="radio" id="letterNo" name="letterOption" value="no" onclick="toggleLetterField(false)" checked>
+                        <label for="letterNo">No</label>
+                    </div>
+
+                    <div id="letterInputContainer" style="display: none; margin-top: 10px;">
+                        <textarea id="letterText" name="letterText" rows="4" cols="30" 
+                                  style="background-image: url('{{ asset('images/letterbackground.avif') }}'); 
+                                         background-size: cover; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" 
+                                  placeholder="Write your message here..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Add Chocolates -->
+                <div class="option-group">
+                    <label>Add Chocolates (+$30 per box):</label>
+                    <div>
+                        <input type="radio" id="chocolatesYes" name="chocolatesOption" value="yes" onclick="toggleChocolatesField(true)">
+                        <label for="chocolatesYes">Yes</label>
+
+                        <input type="radio" id="chocolatesNo" name="chocolatesOption" value="no" onclick="toggleChocolatesField(false)" checked>
+                        <label for="chocolatesNo">No</label>
+                    </div>
+
+                    <div id="chocolatesInputContainer" style="display: none; margin-top: 10px;">
+                        <label for="chocolatesQuantity">Select:</label>
+                        <select id="chocolatesQuantity" name="chocolatesQuantity" class="form-control w-50">
+                            <option value="1">Ferrero chocolate 8 capsules ($30)</option>
+                            <option value="2">Ferrero chocolate 15 capsules ($60)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <div class="option-group">
+                    <button type="submit" class="btn btn-pink">Add to Cart</button>
+
+                </div>
+
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleLetterField(show) {
+        document.getElementById('letterInputContainer').style.display = show ? 'block' : 'none';
+    }
+
+    function toggleChocolatesField(show) {
+        document.getElementById('chocolatesInputContainer').style.display = show ? 'block' : 'none';
+    }
+</script>
+
+{% endblock %}
