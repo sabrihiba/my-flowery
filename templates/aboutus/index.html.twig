@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About Us | Flowery{% endblock %}
+
+{% block body %}
+    <section class="about-us py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">About Flowery</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        Welcome to Flowery! We are passionate about providing beautiful and fresh flowers for every occasion. Whether 
+                        it's a wedding, birthday, anniversary, or just to brighten someone's day, we have the perfect flowers for you.
+                    </p>
+                    <p>
+                        Our mission is to bring nature's beauty to you with a wide variety of high-quality flowers, carefully selected 
+                        from the best growers. We believe that flowers have the power to convey emotions, make memories, and celebrate life.
+                    </p>
+                    <p>
+                        Our team of expert florists is dedicated to creating stunning arrangements that will leave a lasting impression. 
+                        At Flowery, we pride ourselves on exceptional customer service, offering a seamless experience from ordering to delivery.
+                    </p>
+                    <p>
+                    Flowers are not just a product; they are an expression of love, joy, and beauty. At Flowery, we understand the language of 
+    flowers and the emotions they evoke. Each bloom tells a story—whether it's a bouquet to celebrate a milestone, a single stem 
+    to brighten someone's day, or an arrangement to convey deep affection. Our flowers are carefully chosen to help you express 
+    what words cannot, creating memories that last a lifetime. We believe that every petal has the power to make a moment unforgettable.
+</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('images/3.webp') }}" alt="About Flowery" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

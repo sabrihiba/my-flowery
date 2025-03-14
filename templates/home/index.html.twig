@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to My Flowery - Your Flower Shop{% endblock %}
+
+{% block body %}
+    <!-- Hero Section with a carousel for featured flowers -->
+    <div id="flowerCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ asset('images/2.png') }}" class="d-block mx-auto" alt="Flower 1" style="max-width: 500px;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Fresh Bouquets</h5>
+                    <p>Perfect for any occasion</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('images/0.webp') }}" class="d-block mx-auto" alt="Flower 2" style="max-width: 500px;">
+
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Beautiful Arrangements</h5>
+                    <p>From the heart of nature</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+               <img src="{{ asset('images/1.jpg') }}" class="d-block mx-auto" alt="Flower 3" style="max-width: 500px;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Exquisite Designs</h5>
+                    <p>Handcrafted with love</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#flowerCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#flowerCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- About Flowery Section -->
+<section class="about-flowery py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">About Flowery</h2>
+        <p class="text-center">
+            Welcome to Flowery, your one-stop destination for beautiful and fresh flowers. We offer a wide variety of flowers 
+            for every occasion, whether it's a wedding, a birthday, or just to brighten someone's day. 
+            Our mission is to bring nature's beauty to your doorstep with high-quality flowers, exceptional service, and 
+            a touch of elegance. Explore our collection today and find the perfect bouquet for every moment!
+        </p>
+    </div>
+</section>
+
+{% endblock %}
