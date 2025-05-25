@@ -32,7 +32,7 @@ class ContactController extends AbstractController
             // Vous pouvez ajouter ici l'envoi d'email ou enregistrer les données
 
             // Afficher un message de succès
-            $this->addFlash('success', 'Your message has been sent successfully!');
+            $this->addFlash('success', 'Message sent! We will answer via email as soon as possible.');
         }
 
         return $this->render('contact/index.html.twig', [

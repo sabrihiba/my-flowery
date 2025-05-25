@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="container mt-5" style="max-width: 500px;">
+        <h1 class="mb-4 text-center">Register</h1>
+
+        {{ form_start(registrationForm, {'attr': {'enctype': 'multipart/form-data', 'class': 'needs-validation'}}) }}
+
+        <div class="mb-3">
+            {{ form_label(registrationForm.fullname, 'Full Name') }}
+            {{ form_widget(registrationForm.fullname, {'attr': {'class': 'form-control', 'placeholder': 'Enter your full name'}}) }}
+            {{ form_errors(registrationForm.fullname) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(registrationForm.phonenumber, 'Phone Number') }}
+            {{ form_widget(registrationForm.phonenumber, {'attr': {'class': 'form-control', 'placeholder': 'Enter your phone number'}}) }}
+            {{ form_errors(registrationForm.phonenumber) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(registrationForm.title, 'Title (Optional)') }}
+            {{ form_widget(registrationForm.title, {'attr': {'class': 'form-control', 'placeholder': 'Mr, Ms, etc.'}}) }}
+            {{ form_errors(registrationForm.title) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(registrationForm.photoprofil, 'Profile Photo (Optional)') }}
+            {{ form_widget(registrationForm.photoprofil, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(registrationForm.photoprofil) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(registrationForm.email, 'Email Address') }}
+            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Enter your email'}}) }}
+            {{ form_errors(registrationForm.email) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(registrationForm.plainPassword, 'Password') }}
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Enter your password'}}) }}
+            {{ form_errors(registrationForm.plainPassword) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Register</button>
+
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

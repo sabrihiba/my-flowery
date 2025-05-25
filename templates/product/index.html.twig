@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create New Product{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Create a New Product 🌼</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.nameP) }}
+        {{ form_row(form.categoryP) }}
+        {{ form_row(form.priceP) }}
+        {{ form_row(form.stockP) }}
+        {{ form_row(form.createdP) }}
+        {{ form_row(form.descriptionP) }}
+        {{ form_row(form.imageP) }}
+
+        <button class="btn btn-success">Save Product</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -13,7 +13,6 @@
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
-                <th>Extras</th>
                 <th>Price</th>
                 <th>Total</th>
             </tr>
@@ -23,11 +22,6 @@
                 <tr>
                     <td>{{ item.name }}</td>
                     <td>{{ item.quantity }}</td>
-                    <td>
-                        Extra Flowers: {{ item.extraFlowers }}<br>
-                        Letter: {{ item.letterText ? 'Yes' : 'No' }}<br>
-                        Chocolates: {{ item.chocolatesQuantity }}
-                    </td>
                     <td>${{ item.price }}</td>
                     <td>${{ item.totalPrice }}</td>
                 </tr>

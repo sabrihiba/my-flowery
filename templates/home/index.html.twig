@@ -3,6 +3,18 @@
 {% block title %}Welcome to My Flowery - Your Flower Shop{% endblock %}
 
 {% block body %}
+<!-- About Flowery Section -->
+<section class="about-flowery py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Welcome To Flowery</h2>
+        <p class="text-center">
+            Welcome to Flowery, your one-stop destination for beautiful and fresh flowers. We offer a wide variety of flowers 
+            for every occasion, whether it's a wedding, a birthday, or just to brighten someone's day. 
+            Our mission is to bring nature's beauty to your doorstep with high-quality flowers, exceptional service, and 
+            a touch of elegance. Explore our collection today and find the perfect bouquet for every moment!
+        </p>
+    </div>
+</section>
     <!-- Hero Section with a carousel for featured flowers -->
     <div id="flowerCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -39,16 +51,110 @@
         </button>
     </div>
 
-    <!-- About Flowery Section -->
-<section class="about-flowery py-5">
+    
+<!-- Extra Section with Image and Text -->
+<section class="extra-info py-5 bg-light">
     <div class="container">
-        <h2 class="text-center mb-4">About Flowery</h2>
-        <p class="text-center">
-            Welcome to Flowery, your one-stop destination for beautiful and fresh flowers. We offer a wide variety of flowers 
-            for every occasion, whether it's a wedding, a birthday, or just to brighten someone's day. 
-            Our mission is to bring nature's beauty to your doorstep with high-quality flowers, exceptional service, and 
-            a touch of elegance. Explore our collection today and find the perfect bouquet for every moment!
-        </p>
+        <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+                <img src="{{ asset('images/mixed.webp') }}" alt="Small Flower" class="img-fluid" style="max-width: 150px;">
+            </div>
+            <div class="col-md-8">
+                <p>
+                    Our bouquets are a palette of feelings transcribed in notes of colours and various scents. Immerse yourself in knowing what you want to express and choose! Colourful bouquets for all occasions with sophisticated arrangements, to celebrate the most beautiful relationships: you are spoiled for choice on Flowers-Morocco.
+
+Our partners’ services are of impeccable quality. Our fresh or artificial floral arrangements and bouquets are carefully selected to satisfy all your requests. Only your pleasure to offer matters to us. For him, we submit to a professional requirement that matches the emotion you want to convey.Online sales site for all styles of flowers and floral arrangements, takes responsibility for illuminating the city. Its surroundings are also delivered in a multitude of sensations propagated by sublime arrangements.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Best Sellers Section -->
+<section class="best-sellers py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Best Sellers</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            <!-- Flower 1 -->
+            <div class="col">
+                <div class="card h-100 text-center">
+                    <img src="{{ asset('images/best seller 1.png') }}" class="card-img-top mx-auto" alt="Best Seller 1" style="max-height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Rose Elegance</h5>
+                        <p class="card-text">$29.99</p>
+                        <a href="#" class="btn" style="background-color: #e83e8c; color: white;">Add to Cart</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flower 2 -->
+            <div class="col">
+                <div class="card h-100 text-center">
+                    <img src="{{ asset('images/best seller 2.webp') }}" class="card-img-top mx-auto" alt="Best Seller 2" style="max-height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Sunflower Bliss</h5>
+                        <p class="card-text">$24.99</p>
+                        <a href="#" class="btn" style="background-color: #e83e8c; color: white;">Add to Cart</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flower 3 -->
+            <div class="col">
+                <div class="card h-100 text-center">
+                    <img src="{{ asset('images/best seller 3.jpg') }}" class="card-img-top mx-auto" alt="Best Seller 3" style="max-height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Lily Harmony</h5>
+                        <p class="card-text">$34.99</p>
+                        <a href="#" class="btn" style="background-color: #e83e8c; color: white;">Add to Cart</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flower 4 -->
+            <div class="col">
+                <div class="card h-100 text-center">
+                    <img src="{{ asset('images/best seller 4.webp') }}" class="card-img-top mx-auto" alt="Best Seller 4" style="max-height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Tulip Dreams</h5>
+                        <p class="card-text">$27.99</p>
+                        <a href="#" class="btn" style="background-color: #e83e8c; color: white;">Add to Cart</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flower 5 -->
+            <div class="col">
+                <div class="card h-100 text-center">
+                    <img src="{{ asset('images/best seller 5.png') }}" class="card-img-top mx-auto" alt="Best Seller 5" style="max-height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Peony Passion</h5>
+                        <p class="card-text">$32.99</p>
+                        <a href="#" class="btn" style="background-color: #e83e8c; color: white;">Add to Cart</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flower 6 -->
+            <div class="col">
+                <div class="card h-100 text-center">
+                    <img src="{{ asset('images/best seller 6.png') }}" class="card-img-top mx-auto" alt="Best Seller 6" style="max-height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Orchid Grace</h5>
+                        <p class="card-text">$39.99</p>
+                        <a href="#" class="btn" style="background-color: #e83e8c; color: white;">Add to Cart</a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 
